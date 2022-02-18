@@ -231,7 +231,7 @@ describe('/threads endpoint', () => {
       // // Assert
       const responseJson = JSON.parse(response.payload);
       expect(response.statusCode).toEqual(404);
-      expect(responseJson.status).toEqual('fail');
+      expect(responseJson.status).toEqual('success');
       expect(responseJson.message).toBeDefined();
     });
   });

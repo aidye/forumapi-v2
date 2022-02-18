@@ -16,6 +16,20 @@ const createServer = async (container) => {
     port: process.env.PORT,
   });
 
+  server.route({
+    method: 'GET',
+    path: '/',
+    handler: () => ({
+      status: 'success',
+      data: {
+        project: 'Dicoding Backend Expert',
+        antendee: 'Ahmad Homaidi',
+        submission: 'Final submission',
+        topic: 'CI/CD',
+      },
+    }),
+  });
+
   // Auth
   await server.register([
     {

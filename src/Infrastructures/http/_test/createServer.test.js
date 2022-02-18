@@ -17,6 +17,28 @@ describe('HTTP server', () => {
     await UsersTableTestHelper.cleanTable();
   });
 
+  it('should response 200 and return project detail', async () => {
+    // Arrange
+    const server = await createServer({});
+
+    // Action
+    const response = await server.inject({
+      method: 'GET',
+      url: '/',
+    });
+
+    // Assert
+    expect(response.statusCode).toEqual(200);
+    const responseJson = JSON.parse(response.payload);
+    expect(responseJson.status).toEqual('success');
+    expect(responseJson.data).toStrictEqual({
+      project: 'Dicoding Backend Expert',
+      antendee: 'Ahmad Homaidi',
+      submission: 'Final submission',
+      topic: 'CI/CD',
+    });
+  });
+
   it('should response 404 when request unregistered route', async () => {
     // Arrange
     const server = await createServer({});
